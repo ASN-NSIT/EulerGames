@@ -116,10 +116,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -131,5 +127,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 NUMBER_OF_QUESTIONS = 10
 
-LOGIN_REDIRECT_URL = "index"
-LOGOUT_REDIRECT_URL = "index"
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LdFSnUUAAAAANPkdq4T6dNb-nrBDX8fhRMbtiMq'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/'

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
 from .models import User
+from .models import Question
 
 
 class UserSignUpForm(UserCreationForm):
@@ -26,3 +27,9 @@ class UserSignUpForm(UserCreationForm):
         if email and User.objects.filter(email=email).exclude(username=username).exists():
             raise forms.ValidationError(u'A user with that email address already exists.')
         return email
+
+class QuestionForm(forms.ModelForm):
+    answer_input = forms.IntegerField()
+    class Meta:
+        model = Question
+        fields = ('answer_input',)
