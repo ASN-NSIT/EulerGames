@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} Index {% endblock %}
+
+{% block custom_head %}
+<link type="text/css" rel="stylesheet" href="{% static 'css/labyrinth.css' %}" media="screen,projection"/>
+{% endblock %}
+
+{% block main %}
+
+<canvas id='canv'></canvas>
+{% endblock %}
+
+{% block custom_scripts %}
+<script type="text/javascript" src="{% static 'js/labyrinth.js' %}"></script>
+{% endblock %}
