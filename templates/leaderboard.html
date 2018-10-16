@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} Index {% endblock %}
+
+{% block custom_head %}
+<link type="text/css" rel="stylesheet" href="{% static 'css/labyrinth.css' %}" media="screen,projection"/>
+{% endblock %}
+
+{% block main %}
+
+<table border="5px black solid" style="font-size:10px;">
+  <thead>
+    <th>Username</th>
+    <th>Score</th>
+  </thead>
+{% for profile in profiles %}
+<tr><td>{{profile.user.username}}</td>
+<td>{{profile.progress}}</td>
+</tr>
+{%endfor%}
+</table>
+
+{% endblock %}
+
+{% block custom_scripts %}
+<script type="text/javascript" src="{% static 'js/labyrinth.js' %}"></script>
+{% endblock %}
