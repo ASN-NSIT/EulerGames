@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} Level {{question.pk}} {% endblock %}
+
+{% block custom_head %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
+
+
+{% block main %}
+<p>
+  <form method="post" class="form">
+    {% csrf_token %}
+    <p>{{ question.question_text}}</p>
+    {{ questionform }}
+    <div class="g-recaptcha" data-sitekey="6LdFSnUUAAAAAD0p5wV9vJupZCQPDSduiK-4CfWE"></div>
+    <input type="submit">
+  </form>
+</p>
+{% endblock %}
