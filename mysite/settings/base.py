@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
-    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +124,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-NUMBER_OF_QUESTIONS = 10
+NUMBER_OF_QUESTIONS = 1
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LdFSnUUAAAAANPkdq4T6dNb-nrBDX8fhRMbtiMq'
 

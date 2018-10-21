@@ -1,7 +1,5 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
-from django.forms.utils import ValidationError
 from .models import User
 from .models import Question
 
@@ -20,6 +18,10 @@ class UserSignUpForm(UserCreationForm):
             })
         for fieldname in ['username', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
+        self.fields['username'].widget.attrs['placeholder'] = 'Username'
+        self.fields['email'].widget.attrs['placeholder'] = 'Email'
+        self.fields['password1'].widget.attrs['placeholder'] = 'Password'
+        self.fields['password2'].widget.attrs['placeholder'] = 'Retype Password'
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -28,8 +30,10 @@ class UserSignUpForm(UserCreationForm):
             raise forms.ValidationError(u'A user with that email address already exists.')
         return email
 
+
 class QuestionForm(forms.ModelForm):
-    answer_input = forms.IntegerField()
+    answer_input = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Enter Answer', 'class': 'validate'}))
+
     class Meta:
         model = Question
         fields = ('answer_input',)

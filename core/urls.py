@@ -1,11 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
     path('', view=views.index, name='index'),
-    path('signup/', views.signup, name='signup'),
-    path('leaderboard/', views.leaderboard, name='leaderboard'),
-    path('q/<id>', view=views.question_detail, name='question_detail')
-
+    path('start', view=views.start, name='start'),
+    path('finish', view=views.finish, name='finish'),
+    path('register', view=views.register, name='register'),
+    path('leaderboard', view=views.leaderboard, name='leaderboard'),
+    path('q/<num>', view=views.question_detail, name='question_detail')
 ]

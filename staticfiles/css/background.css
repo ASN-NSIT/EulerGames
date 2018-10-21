@@ -1,0 +1,135 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+.overlay{
+  position:fixed;
+   background: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png);
+  -webkit-animation:100s scroll infinite linear;
+  -moz-animation:100s scroll infinite linear;
+  -o-animation:100s scroll infinite linear;
+  -ms-animation:100s scroll infinite linear;
+  animation:100s scroll infinite linear;
+  top:0;
+  left:0;
+  width:100%;
+ height:100%;
+}
+
+.heading-font {
+  text-align:center;
+  color:#FFF !important;
+  font:45px "Helvetica Neue";
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+}
+
+p{
+  color: white;
+  padding: 20px;
+  font:16px "Verdana";
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+}
+
+
+@-webkit-keyframes scroll{
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
+@-moz-keyframes scroll{
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
+@-o-keyframes scroll{
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
+@-ms-keyframes scroll{
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
+@keyframes scroll{
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
+input{
+  width:100%;
+  padding:10px;
+  border-radius:5px;
+  border:none;
+  outline:none;
+  font:14px Raleway;
+}
+
+input[type="submit"]{
+  background:#e74c3c;
+  color:#FFF;
+  width:100%;
+  padding:10px;
+  font-weight:700;
+  opacity:0.8;
+}
+
+
+input[type="submit"]:hover{
+cursor:pointer;
+  opacity:1;
+}
+
+input[type="text"]:focus{
+  border-left:5px solid #e74c3c;
+  -webkit-transition:0.4s ease;
+}
+
+input[type="email"]:focus{
+  border-left:5px solid #e74c3c;
+  -webkit-transition:0.4s ease;
+}
+
+.fa-newspaper-o{
+  font-size:70% !important;
+  margin-right:10px;
+  position:relative;
+  top:-4px;
+}
+
+a{
+  font:13px Raleway;
+  color:#FFF;
+  font-weight:700;
+  text-decoration:none;
+  opacity:0.6;
+}
+
+.styled_button{
+  font: 18px Raleway;
+  color: darkgray;
+  border: 1px solid darkgray;
+  border-radius: 2px;
+  padding: 10px;
+}
+
+a:hover{
+  opacity:1;
+  color: darkgray;
+}
+
+.fa-user,.fa-question{
+  margin-right:5px;
+}
+
+.fa-user{
+  margin-left:5px;
+}
+
