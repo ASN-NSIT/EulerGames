@@ -78,7 +78,7 @@ def question_detail(request, num):
                         user.profile.save()
                         user.save()
                         if num + 1 > int(settings.NUMBER_OF_QUESTIONS):
-                            redirect(reverse('finish'))
+                            return redirect(reverse('finish'))
                         else:
                             return redirect(reverse('question_detail', args=[num+1]))
                     else:
