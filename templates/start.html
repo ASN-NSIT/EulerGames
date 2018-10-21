@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+
+    <div class="container" style="padding-top: 50px;">
+        <h1 class="heading-font">RULES</h1>
+        <br><br>
+        <div align="center" style="background-color: rgba(0, 0, 0, 0.5); opacity: 0.5; text-align: left; padding-bottom: 20px;">
+            <p style="padding-bottom: 5px;">
+                <span style="margin-left: 37%; font-size: 18px;">Welcome to the Euler Games!</span>
+                <br><br>1) Your task is to escape out of this labyrinth you find yourself in.
+                <br>2) The maze consists of several locks ( read levels ), each consisting of a mathematical problem.
+                <br>3) The solution key to the problem unlocks the next problem.
+                <br>4) The key to each lock is an integer input (unless stated otherwise in the problem).
+                <br>5) The answer could be calculated by writing out a simple running code with the appropriate algorithm ( unless of course, you have brains the size of a supercomputer to calculate them manually )
+                <br><br> See you at the end of the puzzle!
+            </p>
+            <a href="{% url 'question_detail' num=1 %}" class="styled_button" style="margin-left: 45%;">Game on!</a>
+        </div>
+    </div>
+
+{% endblock %}

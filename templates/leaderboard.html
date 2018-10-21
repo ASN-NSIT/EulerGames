@@ -1,28 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %} Index {% endblock %}
-
-{% block custom_head %}
-<link type="text/css" rel="stylesheet" href="{% static 'css/labyrinth.css' %}" media="screen,projection"/>
-{% endblock %}
-
 {% block main %}
 
-<table border="5px black solid" style="font-size:10px;">
-  <thead>
-    <th>Username</th>
-    <th>Score</th>
-  </thead>
-{% for profile in profiles %}
-<tr><td>{{profile.user.username}}</td>
-<td>{{profile.progress}}</td>
-</tr>
-{%endfor%}
-</table>
+    <div class="container" style="padding-top: 50px;" align="center">
+        <h1 class="heading-font" style="font-size: 40px;">LEADERBOARD</h1>
+        <br><br><br>
+        <div style="width: 40%;">
+            <table class="table table-dark table-hover" style="font-size:14px; opacity: 0.6;">
+                <thead>
+                    <th>Username</th>
+                    <th>Score</th>
+                    <th>Time penalty</th>
+                </thead>
+                {% for profile, duration in leaderboard_data %}
+                    <tr>
+                        <td>{{ profile.user.username }}</td>
+                        <td>{% widthratio profile.progress 1 100 %}</td>
+                        <td>{{ duration }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 
 {% endblock %}
 
-{% block custom_scripts %}
-<script type="text/javascript" src="{% static 'js/labyrinth.js' %}"></script>
-{% endblock %}

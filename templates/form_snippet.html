@@ -4,12 +4,25 @@
     {% endfor %}
 {% endif %}
 
-{% for field in form.visible_fields %}
+{% for field in form %}
 
-    <div class="row" style="margin-bottom:0px;">
+    <div class="row">
         <div class="input-field col s12">
-            {% include 'form_field_snippet.html' with field=field %}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p style="margin-top:0; color:black" class="error-message"><i>{{ error|escape }}</i></p>
+                {% endfor %}
+            {% endif %}
+            {% if field.help_text %}
+                <div style="float:right;">
+                    <p class="help">{{ field.help_text|safe }}</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 
 {% endfor %}
+
+

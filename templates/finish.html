@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+
+    <div class="container" style="padding-top: 50px;">
+        <h1 class="heading-font">FINISH LINE</h1>
+        <br><br>
+        <div align="center" style="background-color: rgba(0, 0, 0, 0.5); opacity: 0.5; text-align: left; padding-bottom: 20px;">
+            <p style="padding-bottom: 5px;">
+                <span style="margin-left: 37%; font-size: 18px;">YOU DID IT!</span>
+                <br><br>You have successfully escaped out of the maze. Congratulations!
+                <br>We hope you had fun solving through the problems.
+                <br>Don't forget to checkout the leaderboard
+            </p>
+            <a href="{% url 'leaderboard' %}" class="styled_button" style="margin-left: 40%;">Checkout Leaderboard</a>
+        </div>
+    </div>
+
+{% endblock %}

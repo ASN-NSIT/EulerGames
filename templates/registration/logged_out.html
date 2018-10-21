@@ -2,11 +2,9 @@
 
 {% block main %}
 
-    <div class="container">
-        <div class="section">
-            <h5 style="color:grey;" >Logged out successfully</h5>
-        </div>
-        <a href="{% url 'login'%}">Click here to login again</a>
+    <div class="container" style="padding-top: 50px;">
+        <h4 style="color:grey;" >Logged out successfully</h4>
+        <a href="{% url 'login'%}" style="font-size: 15px;">Click here to login again</a>
     </div>
 
 {% endblock %}

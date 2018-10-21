@@ -2,47 +2,59 @@
 
 {% block main %}
 
-    {% if next %}
-        <div class="alert warning" style="padding-left:8%; padding-right:5%;">
-            <span class="closebtn">&times;</span>
-            <span>Please login to continue</span>
-        </div>
-    {% endif %}
-    <div class="container">
-        <div class="section">
-            <h5 class="center-align grey-text text-darken-1">Login</h5>
-        </div>
-        <br>
-        <div class="container">
+    <div class="container" style="padding-top: 50px;">
+        <h1 class="heading-font" style="font-size: 40px;" >LOGIN</h1>
+        <br><br>
+        <div class="container" style="width: 60%;">
+            {% if next %}
+                <div class="alert warning">
+                    <span class="closebtn">&times;</span>
+                    <span>Please login to continue</span>
+                </div>
+            {% endif %}
             <div class="row">
                 {% if next %}
-                    <form class="col s12" method="post" action="/login/?next={{next}}">
+                    <form class="col" method="post" action="/login/?next={{next}}">
                         {% csrf_token %}
-                        {% include 'form_snippet.html' with form=form %}
-                        <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
-                        <!--<div class="g-recaptcha" data-sitekey="6LfaIUAUAAAAAN0RuaBLlZpuCVHX7mtWeVDobCCa"></div>-->
-                        <br>
-                        <div class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+                        <div class="form-group">
+                            {{ form.username }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password }}
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login">
                         </div>
                     </form>
                 {% else %}
-                    <form class="col s12" method="post" action="{% url 'login'  %}">
+                    <form class="col" method="post" action="{% url 'login' %}">
                         {% csrf_token %}
-                        {% include 'form_snippet.html' with form=form %}
-                        <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
-                        <!--<div class="g-recaptcha" data-sitekey="6LfaIUAUAAAAAN0RuaBLlZpuCVHX7mtWeVDobCCa"></div>-->
-                        <br>
-                        <div class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+                        <div class="form-group">
+                            {{ form.username }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password }}
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login">
                         </div>
                     </form>
                 {% endif %}
             </div>
+            <br>
             <div class="section">
-                <h6>New User? <a href="{% url 'signup' %}">Signup</a></h6>
+                <h6 style="color:lightgray">New User? <a style="font-size: 15px;" href="{% url 'login' %}">Register</a></h6>
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block custom_scripts %}
+
+    <script type="text/javascript">
+        document.getElementById('id_username').placeholder = 'Username';
+        document.getElementById('id_password').placeholder = 'Password';
+    </script>
 
 {% endblock %}
