@@ -18,10 +18,6 @@ def index(request):
 
 @login_required
 def start(request):
-    # request.user.profile.progress = 0
-    # request.user.profile.progress_start = timezone.now()
-    # request.user.profile.save()
-    # request.user.save()
     return render(request=request, template_name='start.html')
 
 
@@ -41,7 +37,6 @@ def register(request):
             user = userform.save()
             user.save()
             profile = Profile(user=user)
-            profile.progress_start = timezone.now()
             profile.save()
             username = userform.cleaned_data.get('username')
             raw_password = userform.cleaned_data.get('password1')
@@ -73,7 +68,6 @@ def question_detail(request, num):
                     if answer_response == question.answer:
                         progress = user.profile.progress
                         progress = max(progress, num)
-                        user.profile.progress_time = timezone.now() - user.profile.progress_start
                         user.profile.progress = progress
                         user.profile.save()
                         user.save()
@@ -93,10 +87,10 @@ def question_detail(request, num):
 
 @login_required
 def leaderboard(request):
-    profiles = Profile.objects.order_by('-progress', '-progress_time')
+    profiles = Profile.objects.order_by('-progress', 'progress_time')
     durations = []
     for profile in profiles:
-        d = profile.progress_time
+        d = profile.progress_time - profile.progress_start
         total_seconds = int(d.total_seconds())
         hrs = total_seconds // 3600
         min = (total_seconds % 3600) // 60
@@ -107,5 +101,7 @@ def leaderboard(request):
         else:
             td = '{} sec'.format(d.seconds)
         durations.append(td)
+    print(profiles)
+    print(durations)
     leaderboard_data = zip(profiles, durations)
     return render(request=request, template_name='leaderboard.html', context={'leaderboard_data':leaderboard_data})

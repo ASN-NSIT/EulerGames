@@ -7,14 +7,16 @@
         <h1 class="heading-font" style="font-size: 40px;">LEADERBOARD</h1>
         <br><br><br>
         <div style="width: 40%;">
-            <table class="table table-dark table-hover" style="font-size:14px; opacity: 0.6;">
+            <table class="table table-dark" style="font-size:14px; opacity: 0.6;">
                 <thead>
+                    <th>Rank</th>
                     <th>Username</th>
                     <th>Score</th>
                     <th>Time penalty</th>
                 </thead>
                 {% for profile, duration in leaderboard_data %}
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ profile.user.username }}</td>
                         <td>{% widthratio profile.progress 1 100 %}</td>
                         <td>{{ duration }}</td>
