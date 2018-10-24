@@ -95,7 +95,7 @@ def leaderboard(request):
     profiles = Profile.objects.order_by('-progress', 'progress_time')
     durations = []
     for profile in profiles:
-        d = profile.progress_time - profile.progress_start + datetime.timedelta(seconds=15)
+        d = profile.progress_time - profile.progress_start + datetime.timedelta(seconds=2)
         total_seconds = int(d.total_seconds())
         hrs = total_seconds // 3600
         min = (total_seconds % 3600) // 60
