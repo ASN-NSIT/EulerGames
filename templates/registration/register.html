@@ -10,17 +10,63 @@
             <div class="row">
                 <form class="col" method="post" action="{% url 'register'  %}">
                     {% csrf_token %}
+                    {% if userform.non_field_errors %}
+                        {% for error in userform.non_field_errors %}
+                            <div class="alert error">
+                                <span class="closebtn">&times;</span>
+                                <span>{{ error|escape }}</span>
+                            </div>
+                            <br>
+                        {% endfor %}
+                    {% endif %}
+                    {% if userform.username.errors %}
+                        {% for error in userform.username.errors %}
+                            <div class="alert error">
+                                <span class="closebtn">&times;</span>
+                                <span>{{ error|escape }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         {{ userform.username }}
+                        <span style="color:white;"><small>{{ userform.username.help_text }}</small></span>
                     </div>
+                    {% if userform.email.errors %}
+                        {% for error in userform.email.errors %}
+                            <div class="alert error">
+                                <span class="closebtn">&times;</span>
+                                <span>{{ error|escape }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         {{ userform.email }}
+                        <span style="color:white;"><small>{{ userform.email.help_text }}</small></span>
                     </div>
+                    {% if userform.password1.errors %}
+                        {% for error in userform.password1.errors %}
+                            <div class="alert error">
+                                <span class="closebtn">&times;</span>
+                                <span>{{ error|escape }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         {{ userform.password1 }}
+                        <br>
+                        <span style="color:white;"><small>{{ userform.password1.help_text }}</small></span>
                     </div>
+                    {% if userform.password2.errors %}
+                        {% for error in userform.password2.errors %}
+                            <div class="alert error">
+                                <span class="closebtn">&times;</span>
+                                <span>{{ error|escape }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         {{ userform.password2 }}
+                        <span style="color:white;"><small>{{ userform.password2.help_text }}</small></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Register">

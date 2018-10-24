@@ -10,11 +10,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     progress = models.IntegerField(default=0, validators=[MinValueValidator(0),
                                                           MaxValueValidator(settings.NUMBER_OF_QUESTIONS)])
-    progress_time = models.DateTimeField(auto_now=True)
-    progress_start = models.DateTimeField(auto_now_add=True)
+    progress_time = models.DateTimeField(auto_now=True, editable=True)
+    progress_start = models.DateTimeField(auto_now_add=True, editable=True)
 
 
 class Question(models.Model):
     question_image = models.ImageField(null=True, blank=True)
+    number = models.IntegerField()
     answer = models.IntegerField()
+
 

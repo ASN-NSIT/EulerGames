@@ -16,8 +16,8 @@ class UserSignUpForm(UserCreationForm):
             self.fields[field].widget.attrs.update({
                 'class': 'validate'
             })
-        for fieldname in ['username', 'password1', 'password2']:
-            self.fields[fieldname].help_text = None
+        # for fieldname in ['username', 'password1', 'password2']:
+        #     self.fields[fieldname].help_text = None
         self.fields['username'].widget.attrs['placeholder'] = 'Username'
         self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'

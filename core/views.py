@@ -18,7 +18,8 @@ def index(request):
 
 @login_required
 def start(request):
-    return render(request=request, template_name='start.html')
+    progress = request.user.profile.progress
+    return render(request=request, template_name='start.html', context={'progress_num': progress + 1})
 
 
 @login_required
@@ -31,6 +32,9 @@ def finish(request):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        messages.warning(request, 'You are already registered as a valid user')
+        return redirect(reverse('start'))
     if request.method == 'POST':
         userform = UserSignUpForm(request.POST)
         if userform.is_valid():
@@ -42,7 +46,8 @@ def register(request):
             raw_password = userform.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('index')
+            messages.success(request, 'User registered successfully!')
+            return redirect('start')
     else:
         userform = UserSignUpForm()
     return render(request=request, template_name='registration/register.html', context={'userform': userform})
@@ -59,7 +64,7 @@ def question_detail(request, num):
         messages.warning(request, 'There are no shortcuts!')
         return redirect(reverse('question_detail', args=[user.profile.progress + 1]))
     else:
-        question = get_object_or_404(Question, pk=num)
+        question = get_object_or_404(Question, number=num)
         if request.method == 'POST':
             questionform = QuestionForm(request.POST)
             if questionform.is_valid():
@@ -74,7 +79,7 @@ def question_detail(request, num):
                         if num + 1 > int(settings.NUMBER_OF_QUESTIONS):
                             return redirect(reverse('finish'))
                         else:
-                            return redirect(reverse('question_detail', args=[num+1]))
+                            return redirect(reverse('question_detail', args=[num + 1]))
                     else:
                         questionform.add_error(None, 'Wrong Answer, keep trying!')
                 else:
@@ -101,7 +106,5 @@ def leaderboard(request):
         else:
             td = '{} sec'.format(d.seconds)
         durations.append(td)
-    print(profiles)
-    print(durations)
     leaderboard_data = zip(profiles, durations)
-    return render(request=request, template_name='leaderboard.html', context={'leaderboard_data':leaderboard_data})
+    return render(request=request, template_name='leaderboard.html', context={'leaderboard_data': leaderboard_data})
