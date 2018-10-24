@@ -95,16 +95,20 @@ def leaderboard(request):
     profiles = Profile.objects.order_by('-progress', 'progress_time')
     durations = []
     for profile in profiles:
-        d = profile.progress_time - profile.progress_start + datetime.timedelta(seconds=2)
-        total_seconds = int(d.total_seconds())
-        hrs = total_seconds // 3600
-        min = (total_seconds % 3600) // 60
-        if hrs:
-            td = '{} hrs {} mins'.format(hrs, min)
-        elif min:
-            td = '{} mins'.format(min)
+        if profile.user.username == 'ADMIN':
+            durations.append('ZERO')
         else:
-            td = '{} sec'.format(d.seconds)
-        durations.append(td)
+            d = profile.progress_time - profile.progress_start + datetime.timedelta(seconds=2)
+            total_seconds = int(d.total_seconds())
+            hrs = total_seconds // 3600
+            min = (total_seconds % 3600) // 60
+
+            if hrs:
+                td = '{} hrs {} mins'.format(hrs, min)
+            elif min:
+                td = '{} mins'.format(min)
+            else:
+                td = '{} sec'.format(d.seconds)
+            durations.append(td)
     leaderboard_data = zip(profiles, durations)
     return render(request=request, template_name='leaderboard.html', context={'leaderboard_data': leaderboard_data})

@@ -16,7 +16,7 @@
                 </thead>
                 {% for profile, duration in leaderboard_data %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
+                        <td>{{ forloop.counter0 }}</td>
                         <td>{{ profile.user.username }}</td>
                         <td>{% widthratio profile.progress 1 100 %}</td>
                         <td>{{ duration }}</td>
