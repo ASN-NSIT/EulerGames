@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile, Question
 from .forms import QuestionForm
 from .decorators import check_recaptcha
-from django.utils import timezone
+import datetime
 
 
 def index(request):
@@ -95,7 +95,7 @@ def leaderboard(request):
     profiles = Profile.objects.order_by('-progress', 'progress_time')
     durations = []
     for profile in profiles:
-        d = profile.progress_time - profile.progress_start
+        d = profile.progress_time - profile.progress_start + datetime.timedelta(seconds=15)
         total_seconds = int(d.total_seconds())
         hrs = total_seconds // 3600
         min = (total_seconds % 3600) // 60
